@@ -80,7 +80,7 @@ class Ferrari extends Car
 {
     public Ferrari()
     {
-        super(8, "Ferrary");
+        super(8, "Ferrari");
     }
 
     @Override
