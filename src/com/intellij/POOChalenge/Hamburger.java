@@ -87,6 +87,5 @@ public class Hamburger
         }
 
         return hamPrice;
-
     }
 }
