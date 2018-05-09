@@ -48,7 +48,7 @@ public class ArrayChalenge
         {
             flag = false;
 
-            for (int j = 0; j < sorted.length -1 ; i++)
+            for (int j = 0; j < sorted.length -1 ; j++)
             {
                 if (sorted[j] < sorted[j + 1])
                 {
