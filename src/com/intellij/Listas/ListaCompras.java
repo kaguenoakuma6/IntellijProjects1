@@ -25,6 +25,27 @@ public class ListaCompras
     {
         listaCompras.set(pos - 1, desc);
 
-        System.out.println("Articulo del a");
+        System.out.println("Articulo de la lista modificado: " + pos + ". " + desc);
+    }
+
+    public void elimnaArticulo(int pos)
+    {
+        String descArticulo = listaCompras.get(pos);
+        listaCompras.remove(pos);
+        System.out.println("Articulo de la lista: " + pos + ". " + descArticulo + " eliminado.");
+    }
+
+    public String buscaArticulo(String art)
+    {
+        // boolean exists = listaCompras.contains(art);
+
+        int pos = listaCompras.indexOf(art);
+
+        if ( pos >= 0 )
+        {
+            return listaCompras.get(pos);
+        }
+
+        return null;
     }
 }
