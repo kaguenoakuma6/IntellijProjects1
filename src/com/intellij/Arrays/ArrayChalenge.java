@@ -1,5 +1,6 @@
 package com.intellij.Arrays;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -8,14 +9,18 @@ public class ArrayChalenge
     private static Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
     public static void main(String [] Args)
     {
+        int array[] = getValues(5);
 
+        int[] sorted = sortArray(array);
+
+        printArray(sorted);
     }
 
     public static int[] getValues(int leng)
     {
         int[] array = new int[leng];
 
-        System.out.println("Ingresa " + leng + " numeros");
+        System.out.println("Ingresa " + leng + " numeros \n");
 
         for ( int i = 0; i < array.length; i++)
         {
@@ -35,7 +40,8 @@ public class ArrayChalenge
 
     public static int[] sortArray(int[] array)
     {
-        int[] sorted = new int[array.length];
+        int[] sorted = Arrays.copyOf(array, array.length);
+        //int[] sorted = new int[array.length];
         int temp;
         boolean flag = true;
 
