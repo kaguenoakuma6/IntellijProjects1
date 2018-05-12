@@ -6,14 +6,20 @@ public class ListaCompras
 {
     private ArrayList<String> listaCompras = new ArrayList<String>();
 
+    public ArrayList<String> getListaCompras()
+    {
+        return listaCompras;
+    }
+
     public void agregarArticulo(String articulo)
     {
         listaCompras.add(articulo);
+        System.out.println("Se agrego el articulo > " + articulo +" < a la lista.");
     }
 
     public void impListaCompras()
     {
-        System.out.println("Hay " + listaCompras.size() + " articulos en la lista. \nImprimiendo lista.............\n");
+        System.out.println("Hay " + listaCompras.size() + " artículos en la lista. \nImprimiendo lista.............");
 
         for (int u = 0; u < listaCompras.size(); u++)
         {
@@ -21,20 +27,57 @@ public class ListaCompras
         }
     }
 
-    public void modificaArticulo(int pos, String desc)
+    public void modificaArticulo(String nombreAct, String nuevoNombre)
     {
-        listaCompras.set(pos - 1, desc);
+        int pos = buscarArticulo(nombreAct);
 
-        System.out.println("Articulo de la lista modificado: " + pos + ". " + desc);
+        if (pos >= 0)
+        {
+            modificaArticulo(pos, nuevoNombre);
+            System.out.println("Se a modificadlo el nombre del articulo de > " + nombreAct + " < a >" + nuevoNombre + " <");
+        }
     }
 
-    public void elimnaArticulo(int pos)
+    private  void modificaArticulo(int pos, String desc)
+    {
+        listaCompras.set(pos, desc);
+    }
+
+    public void eliminaArticulo(String  art)
+    {
+        int pos = buscarArticulo(art);
+
+        if (pos >= 0)
+        {
+            eliminaArticulo(pos);
+        }
+    }
+
+    private void eliminaArticulo(int pos)
     {
         String descArticulo = listaCompras.get(pos);
         listaCompras.remove(pos);
-        System.out.println("Articulo de la lista: " + pos + ". " + descArticulo + " eliminado.");
+        System.out.println("Articulo de la lista > " + descArticulo + " < eliminado.");
     }
 
+    public boolean buscar(String articulo)
+    {
+        int pos = buscarArticulo(articulo);
+
+        if (pos >= 0)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    private int buscarArticulo(String art)
+    {
+        return listaCompras.indexOf(art);
+    }
+    /*
     public String buscaArticulo(String art)
     {
         // boolean exists = listaCompras.contains(art);
@@ -48,4 +91,5 @@ public class ListaCompras
 
         return null;
     }
+    */
 }
