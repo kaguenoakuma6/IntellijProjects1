@@ -105,7 +105,7 @@ public class Telefono
         int pos = -1;
         Contacto contacto1 = contacto;
 
-        if ( !(contacto1 == null) )
+        if ( contacto1 != null )
         {
             //System.out.println("Contacto null");
             pos = buscarContacto(contacto1);
