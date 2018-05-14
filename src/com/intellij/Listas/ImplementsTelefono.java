@@ -29,7 +29,7 @@ public class ImplementsTelefono
         impMenu();
         while (!salir)
         {
-            System.out.print("Ingresa la opcion deseada: ");
+            System.out.print("Ingresa la accion deseada: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -52,7 +52,7 @@ public class ImplementsTelefono
                  //   borrarContacto();
                     break;
                 case 5:
-                    //buscarContacto();
+                    buscarContacto();
                     break;
                 case 6:
                     impMenu();
@@ -90,4 +90,65 @@ public class ImplementsTelefono
         telefono.agregarContacto(contacto);
 
     }
+
+
+    public static void buscarContacto()
+    {
+        int opc;
+        boolean salir =  false;
+        String nombre,telef, salida ;
+
+        System.out.println("Selecciona la opcion de busqueda deseada: \n0 - Contacto\n1 - Nombre Contacto\n2 - Telefono Contacto\n3 - Ver opciones de busqueda\n4 - Salir de busqueda");
+
+        while (!salir)
+        {
+            System.out.print("Presiona la búsqueda deseada: ");
+            opc = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opc)
+            {
+                case 0:
+                    System.out.print("Ingresa el nombre del contacto: ");
+                    nombre = scanner.nextLine();
+
+                    System.out.print("Ingresa el teléfono del contacto: ");
+                    telef = scanner.nextLine();
+
+                    Contacto contacto = new Contacto(nombre, telef);
+
+                    salida = telefono.consultarContacto(contacto, null, null);
+
+                    break;
+
+
+                case 1:
+                    System.out.print("Ingresa el nombre del contacto: ");
+                    nombre = scanner.nextLine();
+
+                    salida = telefono.consultarContacto(null, nombre, null);
+
+                    break;
+
+                case 2:
+                    System.out.print("Ingresa el teléfono del contacto: ");
+                    telef = scanner.nextLine();
+
+                    salida = telefono.consultarContacto(null, null, telef);
+
+                    break;
+
+                case 3:
+                    System.out.println("Selecciona la opcion de búsqueda deseada: \n0 - Contacto\n1 - Nombre Contacto\n2 - Telefono Contacto\n3 - Ver opciones de búsqueda\n4 - Salir de búsqueda");
+                    break;
+
+                case 4:
+                    salir = true;
+                    System.out.println("Saliendo del menu de búsqueda de contacto, regresando al menu principal...........");
+                    break;
+            }
+        }
+    }
+
+
 }

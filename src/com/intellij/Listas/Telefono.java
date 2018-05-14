@@ -29,6 +29,7 @@ public class Telefono
 
     private int buscarContacto(Contacto contacto)
     {
+        System.out.println("posicion: " + this.misContactos.indexOf(contacto) + "  " + contacto.getNombre());
         return this.misContactos.indexOf(contacto);
     }
 
@@ -102,19 +103,24 @@ public class Telefono
     public String consultarContacto(@Nullable Contacto contacto, @Nullable String nombre, @Nullable String telefono)
     {
         int pos = -1;
-        Contacto contacto1 = null;
+        Contacto contacto1 = contacto;
 
-        if ( contacto != null )
+        if ( !(contacto1 == null) )
         {
-            pos = buscarContacto(contacto);
+            //System.out.println("Contacto null");
+            pos = buscarContacto(contacto1);
+            System.out.println(contacto1.getNombre() + " ** " + contacto1.getTelefono());
+            System.out.println(pos);
 
         }
         else if( nombre != null )
         {
+            System.out.println("Buscando por nombre");
             pos = buscarContacto(nombre);
         }
         else if (telefono != null)
         {
+            System.out.println("Buscando por telefono");
             pos = buscarContactoTel(telefono);
         }
 
