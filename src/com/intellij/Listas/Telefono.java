@@ -80,7 +80,9 @@ public class Telefono
             System.out.println(antContacto.getNombre() + " fue reemplazado por " + nvoContacto.getNombre());
             return true;
         }
+
         System.out.println("El contacto no fue encontrado");
+
         return false;
     }
 
