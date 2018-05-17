@@ -71,7 +71,7 @@ public class Banco
 
         if (sucursal != null)
         {
-            System.out.println("Detalles de los clientes de la sucursal: ");
+            System.out.println("Detalles de los clientes de la sucursal: " + nombreSucursal);
 
             ArrayList<Cliente> clientesSucursal = sucursal.getClientes();
 

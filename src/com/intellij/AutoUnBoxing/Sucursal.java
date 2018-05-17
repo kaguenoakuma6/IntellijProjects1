@@ -22,7 +22,7 @@ public class Sucursal
     {
         if ( buscaCliente(nombreCliente) == null )
         {
-            this.clientes.add(new Cliente(nombre, montoInicial));
+            this.clientes.add(new Cliente(nombreCliente, montoInicial));
             return true;
         }
 
