@@ -67,7 +67,7 @@ public class Banco
     {
         Sucursal sucursal = buscarSucursal((nombreSucursal));
         int a,b;
-        a=b=1;
+        a = 1;
 
         if (sucursal != null)
         {
@@ -77,8 +77,29 @@ public class Banco
 
             for (Cliente cliente : clientesSucursal)
             {
-                System.out.println("Cliente [ " + );
+                System.out.println("Cliente [" + a + "] " + cliente.getNombre());
+
+                if (muestraMovimientos)
+                {
+                    System.out.println("Transacciones: ");
+                    ArrayList<Double> transacciones = cliente.getTransacciones();
+                    b = 1;
+
+                    for (Double transaccion : transacciones)
+                    {
+                        System.out.println("[" + b + "] Monto: \t" + transaccion);
+                        b++;
+                    }
+                }
+
+                a++;
             }
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
