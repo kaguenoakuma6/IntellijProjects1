@@ -85,7 +85,7 @@ public class ImplementsTelefono
         System.out.print("Ingresar el numero de Teléfono del contacto: ");
         String telef = scanner.nextLine();
 
-        Contacto contacto = new Contacto(nombre, telef);
+        Contacto contacto = Contacto.crearContacto(nombre, telef);
 
         telefono.agregarContacto(contacto);
 
@@ -115,9 +115,9 @@ public class ImplementsTelefono
                     System.out.print("Ingresa el teléfono del contacto: ");
                     telef = scanner.nextLine();
 
-                    Contacto contacto = new Contacto(nombre, telef);
+                    Contacto contactox = Contacto.crearContacto(nombre, telef);
 
-                    salida = telefono.consultarContacto(contacto, null, null);
+                    salida = telefono.consultarContacto(contactox, null, null);
 
                     break;
 
