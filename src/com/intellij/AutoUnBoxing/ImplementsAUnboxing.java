@@ -23,6 +23,21 @@ public class ImplementsAUnboxing
 
 
         banco.listaClientes("Sydney", true);
+
+        if (!banco.agregarCliente("banorte", "luis", 564.01))
+        {
+            System.out.println("Sucursal no existe");
+        }
+
+        if (!banco.agregarSucursal("SucursalX"))
+        {
+            System.out.println("Sucursal ya existe");
+        }
+
+        if (!banco.agregarMovimientoCliente("SucursalX", "jose", 68.21))
+        {
+            System.out.println("Cliente no exsite en la sucursal");
+        }
     }
 }
 /*
