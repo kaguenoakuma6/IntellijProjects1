@@ -10,23 +10,24 @@ public class Prueba
     {
         LinkedList<String> lugaresVisitar = new LinkedList<String>();
 
-        lugaresVisitar.add("Sydney");
-        lugaresVisitar.add("Melbourne");
-        lugaresVisitar.add("Brisbane");
-        lugaresVisitar.add("Perth");
-        lugaresVisitar.add("Canberra");
-        lugaresVisitar.add("Adelaide");
-        lugaresVisitar.add("Darwin");
+        agregaOrdenado(lugaresVisitar,"Sydney");
+        agregaOrdenado(lugaresVisitar,"Melbourne");
+        agregaOrdenado(lugaresVisitar,"Brisbane");
+        agregaOrdenado(lugaresVisitar,"Perth");
+        agregaOrdenado(lugaresVisitar,"Canberra");
+        agregaOrdenado(lugaresVisitar,"Adelaide");
+        agregaOrdenado(lugaresVisitar,"Darwin");
 
         imprimirLista(lugaresVisitar);
 
-        lugaresVisitar.add(1, "Alice Springs");
+        agregaOrdenado(lugaresVisitar,"Alice Springs");
+        agregaOrdenado(lugaresVisitar,"Darwin");
 
         imprimirLista(lugaresVisitar);
 
-        lugaresVisitar.remove(4);
+       // lugaresVisitar.remove(4);
 
-        imprimirLista(lugaresVisitar);
+        //imprimirLista(lugaresVisitar);
     }
 
     public static void imprimirLista(LinkedList<String> lugares)
