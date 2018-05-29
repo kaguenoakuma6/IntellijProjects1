@@ -1,8 +1,6 @@
 package com.intellij.LikedLists;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Prueba
 {
@@ -24,6 +22,9 @@ public class Prueba
         agregaOrdenado(lugaresVisitar,"Darwin");
 
         imprimirLista(lugaresVisitar);
+
+
+        visitar(lugaresVisitar);
 
        // lugaresVisitar.remove(4);
 
@@ -60,7 +61,8 @@ public class Prueba
                 lugaress.previous();
                 lugaress.add(nuevaCiudad);
                 return true;
-            } else if (comparacion < 0)
+            }
+            else if (comparacion < 0)
             {
 
             }
@@ -68,6 +70,96 @@ public class Prueba
 
         lugaress.add(nuevaCiudad);
         return true;
+    }
+
+
+    private static void visitar(LinkedList ciudades)
+    {
+        Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
+        boolean continuar = true, avanzando = true;
+        ListIterator<String> recorrer = ciudades.listIterator();
+        int opcion = 0;
+
+        if (ciudades.isEmpty())
+        {
+            System.out.println("No hay ciudades para visitar.");
+            return;
+        }
+        else
+        {
+            System.out.println("Ahora estas visitando: " + recorrer.next());
+            imprimeMenu();
+        }
+
+        while (continuar)
+        {
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcion)
+            {
+                case 0:
+                    System.out.println("Dila Libre (Vacaciones)");
+                    continuar = false;
+                    break;
+
+                case 1:
+
+                    if (!avanzando)
+                    {
+                        if (recorrer.hasNext())
+                        {
+                            recorrer.next();
+                        }
+                    }
+
+                    avanzando = true;
+
+                    if ( recorrer.hasNext() )
+                    {
+                        System.out.println("Ahora Estas Visitando: " + recorrer.next());
+                    }
+                    else
+                    {
+                        System.out.println("Ya no hay mas ciudades por visitar, fin de la lista.....");
+                        avanzando = false;
+                    }
+
+                    break;
+
+                case 2:
+
+                    if (avanzando)
+                    {
+                        if (recorrer.hasPrevious())
+                        {
+                            recorrer.previous();
+                        }
+                    }
+
+                    avanzando = false;
+
+                    if ( recorrer.hasPrevious() )
+                    {
+                        System.out.println("Ahora Estas Visitando: " + recorrer.previous());
+                    }
+                    else
+                    {
+                        System.out.println("Estas en el inicio de la lista.....");
+                        avanzando = true;
+                    }
+                    break;
+
+                case 3:
+                    imprimeMenu();
+                    break;
+            }
+        }
+    }
+
+    private static void imprimeMenu()
+    {
+        System.out.println("Opciones Disponibles:\nPresiona:\n0 - Salir\n1 - Siguiente Ciudad\n2 - Ciudad Anterior\n3 - Menu de Opciones");
     }
 
 }
