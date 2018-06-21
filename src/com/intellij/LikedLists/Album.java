@@ -17,7 +17,7 @@ public class Album
 
     public boolean agregarCancion(String titulo, double duracion)
     {
-        if (buscarCancion(titulo) != null)
+        if (buscarCancion(titulo) == null)
         {
             this.canciones.add(new Cancion(titulo, duracion));
             return true;
@@ -40,6 +40,7 @@ public class Album
 
     public boolean agregarALista(int numeroCancion, LinkedList<Cancion> listaReproduccion)
     {
+        System.out.println("numero canciones: " + canciones.size());
         int indice = numeroCancion - 1;
 
         if ((indice >= 0) && (indice <= this.canciones.size()))
@@ -48,12 +49,13 @@ public class Album
             return true;
         }
 
-        System.out.println("Esta lista no tiene una canción " + indice);
+        System.out.println("El Album " + this.titulo + " no tiene una canción " + indice);
         return false;
     }
 
     public boolean agregarALista(String titulo, LinkedList<Cancion> listaReproduccion)
     {
+        System.out.println("numero canciones: " + canciones.size());
         Cancion encontrada = buscarCancion(titulo);
 
         if (encontrada != null)
@@ -62,7 +64,7 @@ public class Album
             return true;
         }
 
-        System.out.println("La canción " + titulo + " no esta en este album");
+        System.out.println("La canción " + titulo + " no esta en el album " + this.titulo);
         return false;
     }
 }
