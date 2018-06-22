@@ -40,7 +40,7 @@ public class Album
 
     public boolean agregarALista(int numeroCancion, LinkedList<Cancion> listaReproduccion)
     {
-        System.out.println("numero canciones: " + canciones.size());
+
         int indice = numeroCancion - 1;
 
         if ((indice >= 0) && (indice <= this.canciones.size()))
@@ -55,7 +55,7 @@ public class Album
 
     public boolean agregarALista(String titulo, LinkedList<Cancion> listaReproduccion)
     {
-        System.out.println("numero canciones: " + canciones.size());
+
         Cancion encontrada = buscarCancion(titulo);
 
         if (encontrada != null)
