@@ -13,7 +13,7 @@ public class PhoneImplementation
 
         phone = new MobilePhone(2589);
 
-        //phone.powerOn();
+        phone.powerOn();
         phone.callPhone(2589);
         phone.answer();
     }
