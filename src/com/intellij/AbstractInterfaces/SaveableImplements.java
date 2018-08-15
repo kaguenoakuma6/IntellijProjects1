@@ -18,10 +18,15 @@ public class SaveableImplements
         player.setWeapon("Another Weapon");
         System.out.println(player);
         saveObject(player);
-        loadObject(player);
+        //loadObject(player);
 
         System.out.println(player);
 
+        ISaveable werewolf = new Monster("Werewolf", 20, 200);
+        // Se realiza un casteo de la interfaz a la clase para poder acceder a sus metodos
+        System.out.println("Strength: " + ((Monster) werewolf).getStrength());
+        System.out.println(werewolf);
+        saveObject(werewolf);
     }
 
     public static ArrayList<String> readValues() {
