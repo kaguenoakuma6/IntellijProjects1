@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Gearbox
 {
     private ArrayList<Gear> gears;
-    private int maxGears, gearNumber = 0;
+    private int maxGears, currentGear = 0;
+    private boolean clutchIsIn;
 
     public Gearbox(int maxGears)
     {
@@ -15,7 +16,34 @@ public class Gearbox
         this.gears.add(neutral);
     }
 
-    public class Gear
+    public void operateClutch(boolean in)
+    {
+        this.clutchIsIn = in;
+    }
+
+    public void addGear(int number, double ratio)
+    {
+        if ((number > 0) && (number < maxGears))
+        {
+            this.gears.add(new Gear(number, ratio));
+        }
+    }
+
+    public void changeGear(int newGear)
+    {
+        if ((newGear >= 0) && (newGear < gears.size()) && this.clutchIsIn)
+        {
+            this.currentGear = newGear;
+            System.out.println("Gear " + newGear + " selected" + ".");
+        }
+        else
+        {
+            System.out.println("Grind!");
+            this.currentGear = 0;
+        }
+    }
+
+    private class Gear
     {
         private int gearNumber;
         private double ratio;
