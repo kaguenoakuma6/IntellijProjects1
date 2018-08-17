@@ -43,6 +43,16 @@ public class Gearbox
         }
     }
 
+    public double wheelSpeed(int revs)
+    {
+        if (clutchIsIn)
+        {
+            System.out.println("Scream!!");
+            return 0.0;
+        }
+        return revs * gears.get(currentGear).getRatio();
+    }
+
     private class Gear
     {
         private int gearNumber;
@@ -52,6 +62,11 @@ public class Gearbox
         {
             this.gearNumber = gearNumber;
             this.ratio = ratio;
+        }
+
+        public double getRatio()
+        {
+            return ratio;
         }
 
         public double driveSpeed(int revs)
