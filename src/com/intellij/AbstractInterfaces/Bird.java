@@ -1,6 +1,6 @@
 package com.intellij.AbstractInterfaces;
 
-public class Bird extends Animal
+public abstract class Bird extends Animal
 {
     public Bird(String name)
     {
@@ -18,4 +18,6 @@ public class Bird extends Animal
     {
         System.out.println("Breathe in, breathe out, repeat");
     }
+
+    public abstract void fly();
 }
