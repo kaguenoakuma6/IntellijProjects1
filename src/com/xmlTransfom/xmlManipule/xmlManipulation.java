@@ -25,29 +25,47 @@ public class xmlManipulation
 
             doc.getDocumentElement().normalize();
 
-            NodeList elemPadres = doc.getElementsByTagName("book");
+            System.out.println("Nombre del Documento: " + doc.getDocumentElement().getNodeName());
+            System.out.println();
 
-            int totnodos = elemPadres.getLength();
-
-            System.out.println("Elementos Encontrados: " + totnodos);
-
-            for (int a = 0; a < elemPadres.getLength(); a++)
+            if (doc.hasChildNodes())
             {
-                Node elemen = elemPadres.item(a);
-                System.out.println("Elemento a procesar: " + elemen.getNodeName());
-                System.out.println("Tipo elemento a procesar: " + elemen.getNodeType());
+                NodeList elemPadres = doc.getElementsByTagName("book");
 
 
-                if (elemen.hasAttributes())
+                int totnodos = elemPadres.getLength();
+
+                System.out.println("Elementos Encontrados: " + totnodos);
+                System.out.println();
+
+                for (int a = 0; a < elemPadres.getLength(); a++)
                 {
-                    NamedNodeMap atribs = elemen.getAttributes();
+                    Node elemen = elemPadres.item(a);
+                    System.out.println("Elemento a procesar: " + elemen.getNodeName());
+                    //System.out.println("Tipo elemento a procesar: " + elemen.getNodeType());
 
-                    for ( int atr = 0; atr < atribs.getLength(); atr++)
+                    if (elemen.getNodeType() == Node.ELEMENT_NODE)
                     {
-                        Node atrib = atribs.item(atr);
+                        //System.out.println(elemen.getNodeName() + " : " + elemen.getNodeValue());
 
-                        System.out.println("Nombre atributo: " + atrib.getNodeName() + " Valor: " + atrib.getNodeValue());
+                        if (elemen.hasAttributes())
+                        {
+                            NamedNodeMap atribs = elemen.getAttributes();
+
+                            for (int atr = 0; atr < atribs.getLength(); atr++)
+                            {
+                                Node atrib = atribs.item(atr);
+
+                                System.out.println("Nombre atributo: " + atrib.getNodeName() + " Valor: " + atrib.getNodeValue());
+                            }
+                        }
+
+
+
+
                     }
+
+                    System.out.println();
                 }
             }
         }
