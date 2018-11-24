@@ -1,9 +1,6 @@
 package com.xmlTransfom.xmlManipule;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,7 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
-public class xmlManipulation
+public class xmlManipulation2
 {
     public static void main( String[] args)
     {
@@ -36,19 +33,21 @@ public class xmlManipulation
                 Node elemen = elemPadres.item(a);
                 System.out.println("Elemento a procesar: " + elemen.getNodeName());
                 System.out.println("Tipo elemento a procesar: " + elemen.getNodeType());
+                System.out.println();
 
 
-                if (elemen.hasAttributes())
+                if (elemen.getNodeType() == Node.ELEMENT_NODE)
                 {
-                    NamedNodeMap atribs = elemen.getAttributes();
+                    Element elemento = (Element) elemen;
 
-                    for ( int atr = 0; atr < atribs.getLength(); atr++)
-                    {
-                        Node atrib = atribs.item(atr);
+                    System.out.println("Category: " + elemento.getAttribute("category"));
+                    System.out.println("Title: " + elemento.getElementsByTagName("title").item(0).getTextContent());
+                    System.out.println("Author: " + elemento.getElementsByTagName("author").item(0).getTextContent());
+                    System.out.println("Year: " + elemento.getElementsByTagName("year").item(0).getTextContent());
+                    System.out.println("Price: " + elemento.getElementsByTagName("price").item(0).getTextContent());
 
-                        System.out.println("Nombre atributo: " + atrib.getNodeName() + " Valor: " + atrib.getNodeValue());
-                    }
                 }
+                System.out.println();
             }
         }
         catch (ParserConfigurationException pce)
