@@ -21,7 +21,7 @@ public class xmlManipulation
             // PagarDispCredito.xsd
             DocumentBuilderFactory docBfact = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuild = docBfact.newDocumentBuilder();
-            Document doc = docBuild.parse(new File("/home/shiro/Documentos/JavaProyect/books.xml"));
+            Document doc = docBuild.parse(new File("/home/kuro/Documentos/JavaProyect/books.xml"));
 
             doc.getDocumentElement().normalize();
 
@@ -41,12 +41,13 @@ public class xmlManipulation
                 for (int a = 0; a < elemPadres.getLength(); a++)
                 {
                     Node elemen = elemPadres.item(a);
-                    System.out.println("Elemento a procesar: " + elemen.getNodeName());
+                    // System.out.println("Elemento a procesar: " + elemen.getNodeName());
                     //System.out.println("Tipo elemento a procesar: " + elemen.getNodeType());
 
                     if (elemen.getNodeType() == Node.ELEMENT_NODE)
                     {
                         //System.out.println(elemen.getNodeName() + " : " + elemen.getNodeValue());
+                        String temp = "";
 
                         if (elemen.hasAttributes())
                         {
@@ -56,11 +57,44 @@ public class xmlManipulation
                             {
                                 Node atrib = atribs.item(atr);
 
-                                System.out.println("Nombre atributo: " + atrib.getNodeName() + " Valor: " + atrib.getNodeValue());
+                                //System.out.println("Nombre atributo: " + atrib.getNodeName() + " Valor: " + atrib.getNodeValue());
+                                temp += atrib.getNodeName() + " : " + atrib.getNodeValue() + " ";
                             }
                         }
 
+                        System.out.println(elemen.getNodeName() + " " + temp.trim());
 
+                        if (elemen.hasChildNodes())
+                        {
+                            NodeList hijos = elemen.getChildNodes();
+
+                            System.out.println("Se encontraron: " + hijos.getLength() + " hijos del nodo " + elemen.getNodeName());
+
+                            for (int b = 0; b < hijos.getLength(); b++)
+                            {
+                                Node hijo = hijos.item(b);
+
+                                if (hijo.getNodeType() == Node.ELEMENT_NODE)
+                                {
+                                    String temp1 = "";
+
+                                    if (hijo.hasAttributes())
+                                    {
+                                        NamedNodeMap hAtribs = hijo.getAttributes();
+
+                                        for (int c = 0; c < hAtribs.getLength(); c++)
+                                        {
+                                            Node hAtrib = hAtribs.item(c);
+
+                                            //System.out.println("Nombre Atributo: " + hAtrib.getNodeName() + " Valor: " + hAtrib.getNodeValue());
+                                            temp1 += hAtrib.getNodeName() + " : " + hAtrib.getNodeValue() + " ";
+                                        }
+                                    }
+
+                                    System.out.println(hijo.getNodeName() + " : " + hijo.getTextContent() + " " + temp1.trim());
+                                }
+                            }
+                        }
 
 
                     }
