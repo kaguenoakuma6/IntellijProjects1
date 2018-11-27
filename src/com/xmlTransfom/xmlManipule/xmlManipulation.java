@@ -6,10 +6,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 public class xmlManipulation
@@ -21,7 +24,26 @@ public class xmlManipulation
             // PagarDispCredito.xsd
             DocumentBuilderFactory docBfact = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuild = docBfact.newDocumentBuilder();
-            Document doc = docBuild.parse(new File("/home/kuro/Documentos/JavaProyect/books.xml"));
+            Document doc ;
+            File xsdSelected = null;
+            String path = "", fileName = "";
+
+            JFileChooser fChoose = new JFileChooser();
+            fChoose.setAcceptAllFileFilterUsed(false);
+           // FileNameExtensionFilter xsdFilter = new FileNameExtensionFilter("XSD File Filter", "xsd");
+            FileNameExtensionFilter xsdFilter = new FileNameExtensionFilter("XML File Filter", "xml");
+            fChoose.addChoosableFileFilter(xsdFilter);
+            int aprove = fChoose.showOpenDialog(null);
+
+            if (aprove == JFileChooser.APPROVE_OPTION)
+            {
+                xsdSelected = fChoose.getSelectedFile();
+                path = xsdSelected.getParent() + "/";
+                fileName = xsdSelected.getName();
+            }
+            System.out.println("Iniciado el procesamiento del archivo --> " + fileName);
+
+             doc = docBuild.parse(xsdSelected);
 
             doc.getDocumentElement().normalize();
 
@@ -51,15 +73,7 @@ public class xmlManipulation
 
                         if (elemen.hasAttributes())
                         {
-                            NamedNodeMap atribs = elemen.getAttributes();
-
-                            for (int atr = 0; atr < atribs.getLength(); atr++)
-                            {
-                                Node atrib = atribs.item(atr);
-
-                                //System.out.println("Nombre atributo: " + atrib.getNodeName() + " Valor: " + atrib.getNodeValue());
-                                temp += atrib.getNodeName() + " : " + atrib.getNodeValue() + " ";
-                            }
+                            temp = getAttributes(elemen);
                         }
 
                         System.out.println(elemen.getNodeName() + " " + temp.trim());
@@ -80,15 +94,7 @@ public class xmlManipulation
 
                                     if (hijo.hasAttributes())
                                     {
-                                        NamedNodeMap hAtribs = hijo.getAttributes();
-
-                                        for (int c = 0; c < hAtribs.getLength(); c++)
-                                        {
-                                            Node hAtrib = hAtribs.item(c);
-
-                                            //System.out.println("Nombre Atributo: " + hAtrib.getNodeName() + " Valor: " + hAtrib.getNodeValue());
-                                            temp1 += hAtrib.getNodeName() + " : " + hAtrib.getNodeValue() + " ";
-                                        }
+                                        temp1 = getAttributes(hijo);
                                     }
 
                                     System.out.println(hijo.getNodeName() + " : " + hijo.getTextContent() + " " + temp1.trim());
@@ -116,4 +122,30 @@ public class xmlManipulation
             se.printStackTrace();
         }
     }
+
+    public static String getAttributes(Node element)
+    {
+        NamedNodeMap atribs = element.getAttributes();
+        String temp = "";
+
+        for ( int a = 0; a < atribs.getLength(); a++)
+        {
+            Node atrib = atribs.item(a);
+
+            temp += atrib.getNodeName() + " --> " + atrib.getNodeValue() + " ";
+        }
+
+        return temp.trim();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
