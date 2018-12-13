@@ -21,6 +21,5 @@ public class base64Encrypt
 
         System.out.println("tamaño: " + stDecod.length() + "\nCadena: " + stDecod);
 
-
     }
 }
