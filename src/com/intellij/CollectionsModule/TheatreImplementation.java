@@ -5,7 +5,7 @@ public class TheatreImplementation
     public static void main(String[] args)
     {
         Theatre theatre = new Theatre("Principal", 8, 12);
-        theatre.getSeats();
+        //theatre.getSeats();
 
         if(theatre.reserveSeat("H11"))
         {
