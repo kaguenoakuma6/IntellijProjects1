@@ -41,6 +41,7 @@ public class xmlManipulation
                 path = xsdSelected.getParent() + "/";
                 fileName = xsdSelected.getName();
             }
+
             System.out.println("Iniciado el procesamiento del archivo --> " + fileName);
 
              doc = docBuild.parse(xsdSelected);
