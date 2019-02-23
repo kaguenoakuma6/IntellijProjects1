@@ -24,7 +24,7 @@ public class HMAC_SHA256_B64
             System.out.println("HmacSHA256: " + sha256_hmac.doFinal(messag.getBytes()).toString());
             System.out.println("Token: " + token);
             System.out.println("Hash: " + hash);
-            sha256_hmac.
+
         }
         catch ( Exception e )
         {
